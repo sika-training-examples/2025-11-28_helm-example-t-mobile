@@ -32,6 +32,9 @@ spec:
             - /bin/sh
             - -c
             - chown -R 999:999 /data
+          volumeMounts:
+            - name: redis
+              mountPath: /data
       containers:
         - name: main
           image: redis:8
