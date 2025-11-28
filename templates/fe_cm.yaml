@@ -5,5 +5,5 @@ metadata:
 data:
   FAIL_ON_ERROR: "1"
   API_ORIGIN: "http://be"
-  FONT_COLOR: "white"
-  BACKGROUND_COLOR: "#E20073"
+  FONT_COLOR: {{ .Values.FONT_COLOR | quote }}
+  BACKGROUND_COLOR: {{ .Values.BACKGROUND_COLOR | quote }}

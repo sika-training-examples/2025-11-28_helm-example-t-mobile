@@ -10,6 +10,8 @@ spec:
       app: fe
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/fe_cm.yaml") . | sha256sum }}
       labels:
         app: fe
     spec:

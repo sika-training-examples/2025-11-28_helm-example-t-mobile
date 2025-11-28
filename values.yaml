@@ -1,2 +1,12 @@
 # reuired
 host:
+
+# optional
+
+# backend
+SLOW_START: 1
+EXTRA_TEXT: 
+
+# frontend
+FONT_COLOR: "white"
+BACKGROUND_COLOR: "#E20073"

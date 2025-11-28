@@ -30,9 +30,9 @@ spec:
             - name: REDIS
               value: redis
             - name: SLOW_START
-              value: '5'
+              value: {{ .Values.SLOW_START | quote }}
             - name: EXTRA_TEXT
-              value: v5
+              value: {{ .Values.EXTRA_TEXT | quote }}
           startupProbe:
             httpGet:
               path: /api/readyz
