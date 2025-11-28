@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be
+spec:
+  revisionHistoryLimit: 0
+  replicas: 4
+  selector:
+    matchLabels:
+      app: be
+  template:
+    metadata:
+      labels:
+        app: be
+    spec:
+      serviceAccountName: be-migrations
+      initContainers:
+        - name: wait-for-migrations
+          image: sikalabs/kubectl
+          command:
+            - /bin/sh
+            - -c
+            - sleep 2 && kubectl wait --for=condition=complete --timeout=600s job/be-migrations
+      containers:
+        - name: main
+          image: ghcr.io/ondrejsika/counter
+          ports:
+            - containerPort: 8000
+          env:
+            - name: REDIS
+              value: redis
+            - name: SLOW_START
+              value: '5'
+            - name: EXTRA_TEXT
+              value: v5
+          startupProbe:
+            httpGet:
+              path: /api/readyz
+              port: 8000
+          livenessProbe:
+            httpGet:
+              path: /api/livez
+              port: 8000
+          resources:
+            requests:
+              cpu: 50m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 40Mi

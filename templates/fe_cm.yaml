@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fe
+data:
+  FAIL_ON_ERROR: "1"
+  API_ORIGIN: "http://be"
+  FONT_COLOR: "white"
+  BACKGROUND_COLOR: "#E20073"

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: be-migrations
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: be-migrations
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    resourceNames: ["be-migrations"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: be-migrations
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: be-migrations
+subjects:
+  - kind: ServiceAccount
+    name: be-migrations
