@@ -25,6 +25,13 @@ spec:
         - name: redis
           persistentVolumeClaim:
             claimName: redis
+      initContainers:
+        - name: setup-fs
+          image: debian:13-slim
+          command:
+            - /bin/sh
+            - -c
+            - chown -R 999:999 /data
       containers:
         - name: main
           image: redis:8
