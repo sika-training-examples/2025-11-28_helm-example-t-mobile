@@ -4,7 +4,7 @@ metadata:
   name: fe
 spec:
   revisionHistoryLimit: 0
-  replicas: 4
+  replicas: {{ .Values.frontendReplicas }}
   selector:
     matchLabels:
       app: fe

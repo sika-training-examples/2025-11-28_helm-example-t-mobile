@@ -4,9 +4,13 @@ host:
 # optional
 
 # backend
+backendReplicas: 2
+
 SLOW_START: 1
 EXTRA_TEXT: 
 
 # frontend
+frontendReplicas: 2
+
 FONT_COLOR: "white"
 BACKGROUND_COLOR: "#E20073"
